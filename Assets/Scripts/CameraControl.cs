@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 
 	public Transform player;
+	public Transform cursor; 
 
 	Rigidbody2D r;
 	public float shakeTimer = 0;
@@ -23,7 +24,7 @@ public class CameraControl : MonoBehaviour {
 
 	void FollowPlayer(){
 
-		Vector3 clampedLookDir = (Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)) - player.position).normalized;
+		Vector3 clampedLookDir = (cursor.position - player.position).normalized;
 		clampedLookDir = (player.position + (clampedLookDir *lookDistance));
 		r.AddForce ((clampedLookDir - transform.position).normalized * followIntensity);
 	}
