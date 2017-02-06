@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 60dce04e4bab64a3c82f6e0f1fbb153c
+timeCreated: 1486380041
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _bullet: {fileID: 1000012010799974, guid: e6060e268e6494553b3370f4a7f90b99, type: 2}
+  - shootSound: {instanceID: 0}
+  - deathSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

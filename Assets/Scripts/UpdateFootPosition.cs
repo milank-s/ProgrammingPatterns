@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpdateFootPosition : MonoBehaviour {
 
+	public Rigidbody2D playerRigidbody;
 	public float legLength;
 	public float xOffset;
 	public float directionOffset;
@@ -11,6 +12,7 @@ public class UpdateFootPosition : MonoBehaviour {
 	public float lerpSpeed;
 	public float updateInterval;
 	public float timeOffset;
+
 
 	bool movingFoot = false;
 	float interval; 
@@ -33,11 +35,10 @@ public class UpdateFootPosition : MonoBehaviour {
 
 	void FindNewPosition(){
 		movingFoot = true;
-		moveDir = new Vector2 (Input.GetAxis ("HorizontalA"), Input.GetAxis ("VerticalA")).normalized;
+		moveDir = new Vector2 (playerRigidbody.velocity.normalized.x, playerRigidbody.velocity.normalized.y).normalized;
 		Vector2 calculatedOffset = ((transform.right * offset.x) + (transform.up * offset.y)/2);
 		newPosition = (Vector2)transform.parent.position;
 		newPosition += ((moveDir * directionOffset) + (calculatedOffset * xOffset))* legLength;
-		Debug.Log (moveDir);
 	}
 
 	void Step(){
@@ -54,7 +55,7 @@ public class UpdateFootPosition : MonoBehaviour {
 			transform.position = lastUpdatedPosition;
 			interval -= Time.deltaTime;
 
-			if (interval < 0 || Vector3.Distance(transform.parent.position, lastUpdatedPosition) > maxDistance) {
+			if (Vector3.Distance(transform.parent.position, lastUpdatedPosition) > maxDistance) {
 				interval = 0;
 				FindNewPosition ();
 			}
