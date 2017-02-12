@@ -13,6 +13,7 @@ public class UpdateFootPosition : MonoBehaviour {
 	public float updateInterval;
 	public float timeOffset;
 
+	public Sprite footprintSprite;
 
 	bool movingFoot = false;
 	float interval; 
@@ -39,6 +40,11 @@ public class UpdateFootPosition : MonoBehaviour {
 		Vector2 calculatedOffset = ((transform.right * offset.x) + (transform.up * offset.y)/2);
 		newPosition = (Vector2)transform.parent.position;
 		newPosition += ((moveDir * directionOffset) + (calculatedOffset * xOffset))* legLength;
+		GameObject footprint = new GameObject ();
+		footprint.transform.position = transform.position;
+		footprint.AddComponent<SpriteRenderer> ().sprite = footprintSprite;
+		footprint.AddComponent<FadeSprite> ();
+
 	}
 
 	void Step(){

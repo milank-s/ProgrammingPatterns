@@ -3,13 +3,6 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-	[Header("Tuning")]
-	public float _speed = 1;
-	public int _health = 1;
-	public float RoF = 1f;
-	public float bulletSpeed;
-	public float bulletForce;
-
 	[Header("Prefabs")]
 	public GameObject _bullet;
 
@@ -18,24 +11,26 @@ public class Enemy : MonoBehaviour {
 	public AudioSource shootSound;
 	public AudioSource deathSound;
 
+	[Header("Tuning")]
+	public float _speed;
+	public int _health;
+	public float RoF;
+	public float bulletSpeed;
+	public float bulletForce;
+
 	protected static GameObject _player;
 	protected Rigidbody2D rb;
 	protected Vector2 directionToPlayer,targetPosition; 
 
 	protected float interval;
 
-	public Enemy(){
-	}
-
 	void Start(){
-		//add required components e.g. "Movetowardsplayer" or "shootatPlayer"
 		_player = GameObject.Find("Player");
 		rb = this.GetComponent<Rigidbody2D> ();
 	}
 
 	protected void UpdateDirection(){
 		directionToPlayer = (_player.transform.position - transform.position).normalized;
-		Debug.DrawLine (transform.position, directionToPlayer);
 	}
 
 	protected void FacePlayer(){

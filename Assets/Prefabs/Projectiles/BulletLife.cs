@@ -4,7 +4,8 @@ using System.Collections;
 public class BulletLife : MonoBehaviour {
 
 	Rigidbody2D r;
-	public float lifeTime = 1;
+	public float lifeTime;
+
 	private float time = 0;
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class BulletLife : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		time += Time.deltaTime;
-		r.AddRelativeForce (transform.right * (Mathf.Cos (time * 15) * 200));
+//		r.AddRelativeForce (transform.right * (Mathf.Cos (time * 15) * 200));
 //		!GetComponent<Renderer>().isVisible
 		if (time > lifeTime) {
 			Destroy (this.gameObject);
